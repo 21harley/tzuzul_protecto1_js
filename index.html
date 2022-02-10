@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz Circular</title>
+</head>
+<body>
+    <script>
+    
+        let numL=Number(prompt("Ingrese el numero de L de la matriz:"));
+        let numA=Number(prompt("Ingrese el numero de A de la matriz:"));
+ 
+        if(
+          numL!=undefined && (!Number.isNaN(numL))
+          &&
+          numA!=undefined && (!Number.isNaN(numA))
+         ){
+            if(numL > 0 && numA > 0){
+                //Crear y cargar matriz
+                let matriz=[];
+                for(let i=0;i<numA;i++){
+                    matriz[i]=[];
+                    for(let j=0;j<numL;j++){
+                       matriz[i][j]=0;
+                    }
+                }
+                //inicio variables
+                let casillas=numA*numL,//cantida de casillas totales a cargar
+                    i=0,               //iterador 
+                    cambio=1,          //bandera de orden de cada mini ciclo
+                    ban1=0,            //contador en cada mini ciclo
+                    ban2=false,        //bandera para caber si sumar o restar
+                    s1=0,s2=-1;        //posiciones s1=i y s2=j
+
+                //cargo matriz    
+                do{
+                  if(cambio==0){
+                      if(0>numA-ban1) break; 
+                      for(let c=0;c<numA-ban1;c++){
+                        s1+=(ban2)?1:(-1);
+                        matriz[s1][s2]=i+1;
+                        i++;
+                    }
+                    cambio++;
+                  } 
+                  ban2=!ban2;
+                  if(cambio==1){
+                    if(0>numL-ban1) break; 
+                    for(let c=0;c<numL-ban1;c++){
+                        s2+=(ban2)?1:(-1);
+                        matriz[s1][s2]=i+1;
+                        i++;
+                    }
+                    cambio=0;                  
+                  }
+                  ban1++;
+                }while(i<casillas)
+
+                console.log(matriz);
+            }else{
+                console.log("No se puede generar la matriz con 0");
+            } 
+        }else{
+            console.log("Ingreso mal los datos");
+        }
+    </script>
+</body>
+</html>
