@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(20, 16, 16);
+}
+h1{
+    color: white;
+}
+.matrizCircular{
+    color: white;
+}
+.container{
+    display: grid;
+    place-items: center;
+    gap: 20px;
+}
+.btn-recargar,
+.btn-info{
+    background: none;
+    border: none;
+    background-color: rgb(15, 15, 255);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+}
+.btn-info:hover,
+.btn-recargar:hover{
+    background-color: rgb(82, 82, 252);
+}
