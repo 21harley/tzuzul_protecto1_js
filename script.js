@@ -108,7 +108,7 @@
         tablaH.innerHTML=mensaje;
         if(estado) efectoMatriz();
 
-        let tiempo=(50*numA*numL)+100;//calculo tiempo antes de aparecer boton
+        let tiempo=(100*numA*numL)+100;//calculo tiempo antes de aparecer boton
         let mostrarBoton=setInterval(()=>{
             //creo boton
             let boton=document.createElement("button");
@@ -116,7 +116,10 @@
             boton.innerHTML="Ver efecto";
             boton.setAttribute('id','efecto');
 
-            boton.onclick = () => efectoMatriz();
+            boton.onclick = () =>{
+                boton.disabled=true;
+                efectoMatriz();
+            } 
 
             const padre=tablaH.parentNode;
             padre.insertBefore(boton,tablaH.nextSibling);
@@ -128,14 +131,15 @@
         let contador=0;
         let arg=document.querySelectorAll(".item-matriz");
 
-        let act=document.querySelectorAll(".active");
-        act.forEach((el)=>{
-          el.classList.remove("active");
-        })
+        eliminarActive();
 
         if(arg.length>0){
             let lista=setInterval(()=>{
-                if(arg.length==contador) clearInterval(lista);
+                if(arg.length==contador){
+                    let boton=document.querySelector("#efecto");
+                    if(boton) boton.disabled=false;
+                    clearInterval(lista);
+                }
                 contador+=1;
                  for(let i=0;i<arg.length;i++){
                      if(contador==Number(arg[i].innerHTML)){
@@ -143,7 +147,13 @@
                          break;
                      }
                  }
-                 
              },50);
         }
+    }
+
+    function eliminarActive(){
+        let act=document.querySelectorAll(".active");
+        act.forEach((el)=>{
+          el.classList.remove("active");
+        })
     }
