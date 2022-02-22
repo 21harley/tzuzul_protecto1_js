@@ -3,16 +3,10 @@ import {logicaMatriz} from "./logica.js"
 let numeroI=0;
 
 export function cargarMatriz(){
-    //validar si existe boton efecto
-    let botonEfecto=document.querySelector("#efecto");
-    if(botonEfecto){
-        const padre=botonEfecto.parentNode;
-        padre.removeChild(botonEfecto);
-    };
-    
+
     //cargo datos de matriz
-    let numL=Number(prompt("Ingrese el numero de L de la matriz:"));
-    let numA=Number(prompt("Ingrese el numero de A de la matriz:"));
+    let numL=5//Number(prompt("Ingrese el numero de L de la matriz:"));
+    let numA=5//Number(prompt("Ingrese el numero de A de la matriz:"));
     let tablaH=document.querySelector("#matriz");
     let mensaje=``;
     let estado=true;
@@ -32,7 +26,7 @@ export function cargarMatriz(){
             [numA,numL,numA,numL-1,0,false,1,0],[numA,numL,numA-1,numL,1,true,0,0]
           ],
           [
-            [numA,numL,numA,0,0,false,0,1],[numA,numL,numA-1,-1,1,true,1,1]
+            [numA,numL,numA-1,-1,1,true,1,1],[numA,numL,numA,0,0,false,0,1]
           ],
           [
             [numA,numL,0,numL,1,false,1,1],[numA,numL,-1,numL-1,0,true,0,1]
@@ -72,25 +66,6 @@ export function cargarMatriz(){
     }
     tablaH.innerHTML=mensaje;
     if(estado) efectoMatriz();
-     /*
-    let tiempo=(100*numA*numL)+100;//calculo tiempo antes de aparecer boton
-    let mostrarBoton=setInterval(()=>{
-        //creo boton
-        let boton=document.createElement("button");
-        boton.classList.add("btn-efecto");
-        boton.innerHTML="Ver efecto";
-        boton.setAttribute('id','efecto');
-
-        boton.onclick = () =>{
-            boton.disabled=true;
-            efectoMatriz();
-        } 
-
-        const padre=tablaH.parentNode;
-        padre.insertBefore(boton,tablaH.nextSibling);
-        clearInterval(mostrarBoton);   
-    },tiempo);
-    */
 }
 
 function efectoMatriz(){
