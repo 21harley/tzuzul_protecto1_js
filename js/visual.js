@@ -5,8 +5,8 @@ let numeroI=0;
 export function cargarMatriz(){
 
     //cargo datos de matriz
-    let numL=5//Number(prompt("Ingrese el numero de L de la matriz:"));
-    let numA=5//Number(prompt("Ingrese el numero de A de la matriz:"));
+    let numL=Number(prompt("Ingrese el numero de L de la matriz:"));
+    let numA=Number(prompt("Ingrese el numero de A de la matriz:"));
     let tablaH=document.querySelector("#matriz");
     let mensaje=``;
     let estado=true;
